@@ -1,0 +1,18 @@
+{% extends 'template_base.html' %}
+{% block titre %}Page d'articles{% endblock %}
+{% block contenu %}
+    <h1>Les articles (Application)</h1>
+    <a class="btn btn-primary" href="{% url 'articles:creer' %}">
+        Créer
+    </a>
+    <!--{%... veut dire qu'on veut executer des commandes-->
+    <!--deux acolades veut dire qu'on veut afficher des valeurs-->
+
+    {% for article in articles %}
+    <!--articles:article veut dire qu'on veut url article de note app articles-->
+    <h2> <a href="{% url 'articles:article' slug=article.slug %}">{{ article.titre }}</a></h2>
+    <img width='300px'  src="{{ article.image.url }}"  alt="{{ article.titre }}">
+    <p>{{ article.contenu }}</p>
+    <span>{{ article.date_publication }}</span>
+    {% endfor %}
+{% endblock %}
